@@ -1,4 +1,8 @@
 # Micro-Service-Base
+
+[![Build Status](https://travis-ci.org/JustinDFuller/Micro-Service-Base.svg?branch=master)](https://travis-ci.org/JustinDFuller/Micro-Service-Base)
+[![Coverage Status](https://coveralls.io/repos/github/JustinDFuller/Micro-Service-Base/badge.svg?branch=master)](https://coveralls.io/github/JustinDFuller/Micro-Service-Base?branch=master)
+
 Base Repository for micro services - Clone this to start a new node micro service.
 
 ### Todo:
