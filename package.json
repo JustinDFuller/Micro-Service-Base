@@ -36,7 +36,7 @@
     "types": "flow",
     "unittests": "nyc ava src/**/*.spec.js",
     "report": "nyc report --reporter=html",
-    "test": "concurrently \"npm run types\" \"unittests\"",
+    "test": "concurrently \"npm run types\" \"npm run unittests\"",
     "build": "BABEL_ENV=production babel --out-dir=dist src/**/*.js"
   },
   "babel": {
