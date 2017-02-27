@@ -17,10 +17,12 @@
     "ava": "^0.18.2",
     "babel": "^6.23.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "commitizen": "^2.9.6",
     "concurrently": "^3.3.0",
     "conventional-changelog-cli": "^1.2.0",
+    "coveralls": "^2.11.16",
     "eslint": "3.15.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
@@ -32,6 +34,29 @@
   },
   "scripts": {
     "types": "flow",
-    "test": "concurrently \"npm run types\""
+    "unittests": "nyc ava src/**/*.spec.js",
+    "report": "nyc report --reporter=html",
+    "test": "concurrently \"npm run types\" \"unittests\"",
+    "build": "BABEL_ENV=production babel --out-dir=dist src/**/*.js"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ],
+    "plugins": [
+      "transform-flow-strip-types",
+      "transform-runtime"
+    ],
+    "ignore": "src/**/*.spec.js",
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
   }
 }
