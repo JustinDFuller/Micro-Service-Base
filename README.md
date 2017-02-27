@@ -7,7 +7,7 @@ Base Repository for micro services - Clone this to start a new node micro servic
 
 ### Todo:
 
-- [ ] Type Checking Flow
+- [x] Type Checking Flow
 - [ ] Testing With Ava
 - [ ] Coverage with NYC
 - [ ] CI with Travis CI
