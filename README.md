@@ -12,9 +12,9 @@ Base Repository for micro services - Clone this to start a new node micro servic
 - [x] Coverage with NYC
 - [x] CI with Travis CI
 - [x] Coverage with coveralls
-- [c] Commit Messages Commitizen
-- [c] Changelog with cz-conventional-changelog
-- [c] Githooks (tests, eslint)
+- [x] Commit Messages Commitizen
+- [x] Changelog with cz-conventional-changelog
+- [x] Githooks (tests, eslint)
 - [x] Eslint rules set up
 - [ ] Initial express route to ping.
 - [ ] Compression
