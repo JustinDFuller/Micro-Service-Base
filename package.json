@@ -36,8 +36,13 @@
     "types": "flow",
     "unittests": "nyc ava src/**/*.spec.js",
     "report": "nyc report --reporter=html",
-    "test": "concurrently \"npm run types\" \"npm run unittests\"",
-    "build": "BABEL_ENV=production babel --out-dir=dist src/**/*.js"
+    "test": "concurrently \"npm run types\" \"npm run unittests\" \"npm run lint\"",
+    "lint": "eslint \"src/**/*.js\" -c ./.eslintrc.js --fix",
+    "build": "BABEL_ENV=production babel --out-dir=dist src/**/*.js",
+    "gcommit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "version": "npm run changelog && git add package.json && git commit -m \"Update app version.\"",
+    "commit": "npm run test"
   },
   "babel": {
     "presets": [
@@ -58,5 +63,10 @@
     "require": [
       "babel-core/register"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
