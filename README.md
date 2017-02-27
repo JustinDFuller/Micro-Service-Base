@@ -8,10 +8,10 @@ Base Repository for micro services - Clone this to start a new node micro servic
 ### Todo:
 
 - [x] Type Checking Flow
-- [ ] Testing With Ava
-- [ ] Coverage with NYC
-- [ ] CI with Travis CI
-- [ ] Coverage with coveralls
+- [x] Testing With Ava
+- [x] Coverage with NYC
+- [x] CI with Travis CI
+- [x] Coverage with coveralls
 - [ ] Commit Messages Commitizen
 - [ ] Changelog with cz-conventional-changelog
 - [ ] Githooks (tests, eslint)
