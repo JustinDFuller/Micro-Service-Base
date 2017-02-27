@@ -8,7 +8,9 @@
   "license": "MIT",
   "dependencies": {
     "apicache": "^0.8.3",
+    "babel-watch": "^2.0.6",
     "compression": "^1.6.2",
+    "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "forever": "^0.15.3",
     "helmet": "^3.4.1"
@@ -16,6 +18,7 @@
   "devDependencies": {
     "ava": "^0.18.2",
     "babel": "^6.23.0",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
@@ -25,24 +28,32 @@
     "coveralls": "^2.11.16",
     "eslint": "3.15.0",
     "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-flowtype": "^2.30.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.0",
     "flow-bin": "^0.40.0",
+    "flow-typed": "^2.0.0",
     "husky": "^0.13.1",
+    "nodemon": "^1.11.0",
     "nyc": "^10.1.2"
   },
   "scripts": {
     "types": "flow",
+    "thirdpartytypes": "flow-typed install",
     "unittests": "nyc ava src/**/*.spec.js",
     "report": "nyc report --reporter=html",
     "test": "concurrently \"npm run types\" \"npm run unittests\" \"npm run lint\"",
     "lint": "eslint \"src/**/*.js\" -c ./.eslintrc.js --fix",
-    "build": "BABEL_ENV=production babel --out-dir=dist src/**/*.js",
+    "build": "babel --out-dir=dist src/**/*.js",
     "gcommit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "version": "npm run changelog && git add package.json && git commit -m \"Update app version.\"",
-    "commit": "npm run test"
+    "commit": "npm run test",
+    "postinstall": "npm run thirdpartytypes",
+    "dev": "babel-watch src/index.js",
+    "prestart": "npm run build",
+    "start": "forever dist/src/index.js"
   },
   "babel": {
     "presets": [

@@ -16,7 +16,7 @@ Base Repository for micro services - Clone this to start a new node micro servic
 - [x] Changelog with cz-conventional-changelog
 - [x] Githooks (tests, eslint)
 - [x] Eslint rules set up
-- [ ] Initial express route to ping.
-- [ ] Compression
+- [x] Initial express echo route.
+- [x] Compression
 - [ ] Helmet and related security (CORS)
-- [ ] Caching with API cache
+- [x] Caching with API cache
