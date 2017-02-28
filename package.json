@@ -13,11 +13,14 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "forever": "^0.15.3",
-    "helmet": "^3.4.1"
+    "helmet": "^3.4.1",
+    "mock-require": "^2.0.1",
+    "proxyquire": "^1.7.11"
   },
   "devDependencies": {
     "ava": "^0.18.2",
     "babel": "^6.23.0",
+    "babel-cli": "^6.23.0",
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -36,16 +39,17 @@
     "flow-typed": "^2.0.0",
     "husky": "^0.13.1",
     "nodemon": "^1.11.0",
-    "nyc": "^10.1.2"
+    "nyc": "^10.1.2",
+    "sinon": "^1.17.7"
   },
   "scripts": {
     "types": "flow",
     "thirdpartytypes": "flow-typed install",
-    "unittests": "nyc ava src/**/*.spec.js",
+    "unittests": "nyc ava dist/**/*.spec.js",
     "report": "nyc report --reporter=html",
     "test": "concurrently \"npm run types\" \"npm run unittests\" \"npm run lint\"",
     "lint": "eslint \"src/**/*.js\" -c ./.eslintrc.js --fix",
-    "build": "babel --out-dir=dist src/**/*.js",
+    "build": "babel src --out-dir=dist --source-maps",
     "gcommit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "version": "npm run changelog && git add package.json && git commit -m \"Update app version.\"",
@@ -53,6 +57,7 @@
     "postinstall": "npm run thirdpartytypes",
     "dev": "babel-watch src/index.js",
     "prestart": "npm run build",
+    "pretest": "npm run build",
     "start": "forever dist/src/index.js"
   },
   "babel": {
@@ -63,7 +68,6 @@
       "transform-flow-strip-types",
       "transform-runtime"
     ],
-    "ignore": "src/**/*.spec.js",
     "env": {
       "development": {
         "sourceMaps": "inline"
