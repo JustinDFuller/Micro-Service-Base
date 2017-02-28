@@ -9,6 +9,7 @@ function init() {
   const app = express();
   app.use(compression());
   app.use(helmet());
+  app.use(server.getAllowedOrigin);
   app.all('/echo', cache.middleware('1 hour'), routes.echo);
   app.listen(process.env.PORT || 3000, server.listen);
 }

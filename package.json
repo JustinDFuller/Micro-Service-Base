@@ -10,7 +10,9 @@
     "apicache": "^0.8.3",
     "babel-watch": "^2.0.6",
     "compression": "^1.6.2",
+    "cross-env": "^3.1.4",
     "dotenv": "^4.0.0",
+    "eslint-plugin-ava": "^4.2.0",
     "express": "^4.14.1",
     "forever": "^0.15.3",
     "helmet": "^3.4.1",
@@ -22,6 +24,7 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.23.0",
     "babel-eslint": "^7.1.1",
+    "babel-plugin-istanbul": "^4.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
@@ -46,8 +49,8 @@
     "types": "flow",
     "thirdpartytypes": "flow-typed install",
     "unittests": "nyc ava dist/**/*.spec.js",
-    "report": "nyc report --reporter=html",
-    "test": "concurrently \"npm run types\" \"npm run unittests\" \"npm run lint\"",
+    "report": "nyc report --reporter=html --produce-source-map",
+    "test": "cross-env NODE_ENV=test concurrently \"npm run types\" \"npm run unittests\" \"npm run lint\"",
     "lint": "eslint \"src/**/*.js\" -c ./.eslintrc.js --fix",
     "build": "babel src --out-dir=dist --source-maps",
     "gcommit": "git-cz",
@@ -55,10 +58,10 @@
     "version": "npm run changelog && git add package.json && git commit -m \"Update app version.\"",
     "commit": "npm run test",
     "postinstall": "npm run thirdpartytypes",
-    "dev": "babel-watch src/index.js",
+    "dev": "cross-env NODE_ENV=development babel-watch src/index.js",
     "prestart": "npm run build",
-    "pretest": "npm run build",
-    "start": "forever dist/src/index.js"
+    "pretest": "cross-env NODE_ENV=test npm run build",
+    "start": "cross-env NODE_ENV=production forever dist/src/index.js"
   },
   "babel": {
     "presets": [
@@ -71,6 +74,11 @@
     "env": {
       "development": {
         "sourceMaps": "inline"
+      },
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
       }
     }
   },
@@ -78,6 +86,16 @@
     "require": [
       "babel-core/register"
     ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "config": {
     "commitizen": {
