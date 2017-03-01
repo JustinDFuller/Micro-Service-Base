@@ -61,7 +61,8 @@
     "dev": "cross-env NODE_ENV=development babel-watch src/index.js",
     "prestart": "npm run build",
     "pretest": "cross-env NODE_ENV=test npm run build",
-    "start": "cross-env NODE_ENV=production forever dist/src/index.js"
+    "start": "cross-env NODE_ENV=production forever dist/src/index.js",
+    "precommit": "npm run test"
   },
   "babel": {
     "presets": [
