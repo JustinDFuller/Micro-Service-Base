@@ -1,7 +1,7 @@
 # Micro-Service-Base
 
 [![Build Status](https://travis-ci.org/JustinDFuller/Micro-Service-Base.svg?branch=master)](https://travis-ci.org/JustinDFuller/Micro-Service-Base)
-[![Coverage Status](https://coveralls.io/repos/github/JustinDFuller/Micro-Service-Base/badge.svg?branch=master)](https://coveralls.io/github/JustinDFuller/Micro-Service-Base?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/JustinDFuller/Micro-Service-Base/badge.svg?branch=master)](https://coveralls.io/github/JustinDFuller/Micro-Service-Base?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/JustinDFuller/Micro-Service-Base.svg)](https://greenkeeper.io/)
 
 Base Repository for micro services - Clone this to start a new Node.js micro service.
 
